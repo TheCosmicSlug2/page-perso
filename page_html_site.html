@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+		<title>Mon loisir préféré</title>
+	</head>
+	<link rel="stylesheet" href="css/page_perso.css">
+<body>
+
+	<section class="section_titre">
+		<h1>Mon loisir préféré : le skate</h1>
+	</section>
+		<p>Voici une présentation de mon loisir préféré : le skate</p>
+
+	<section class="grande_section">
+		<h2>Skateboard 4ever</h2>
+
+
+		<section class="petite_section">
+			<h3>C'est quoi ?</h3>
+			<h4>Description du sport</h4>
+			<p>Le skate est un sport que l'on pratique avec une <em> planche de skateboard </em>. C'est un sport artistique où l'important sont les figures et la réalisation de ces dernières.</p>
+			<h4>Fréquence et lieux : </h4>
+			<p>Je le pratique principalement l'été, au skatepark de Metz, et uniquement lorsque le temps est clair (une planche de skateboard mouillé se casse très vite)</p>
+			<figure>
+				<img src="https://skateparks.fr/wp-content/uploads/2018/02/481_bowl-metz.jpg" height="200px" title="Bowl de Metz">
+				<figcaption>Skatepark de Metzs</figcaption>
+			</figure>
+		</section>
+
+		<section class="petite_section">
+			<h3>Quelques skaters célèbres</h3>
+			<section class="section_images">
+				<div class="frame">
+					<figure>
+						<div class="image">
+							<a href="https://fr.wikipedia.org/wiki/Rodney_Mullen">
+								<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Rodney_mullen_air.jpg/255px-Rodney_mullen_air.jpg" alt="Rodney Mullen" height="250px" title="Rodney Mullen">
+							</a>
+						</div>
+						<figcaption>Rodney Mullen</figcaption>
+					</figure>
+
+					<figure>	
+						<div class="image">
+							<a href="https://fr.wikipedia.org/wiki/Tony_Hawk">
+								<img src="https://www.abcskate.com/wp-content/uploads/2021/02/AbcSkate-skate-skateboard-tony-hawk-03.jpg" alt="Tony Hawk" height="250px" title="Tony Hawk">
+							</a>
+						</div>
+						<figcaption>Tony Hawk</figcaption>
+					</figure>
+					
+					<figure>
+						<div class="image">
+							<a href="https://fr.wikipedia.org/wiki/Aurélien_Giraud">
+							<img src="https://img.olympics.com/images/image/private/t_1-1_1280/primary/giclnlwgneer5ddenrx9" alt="Aurélien Giraud" height="250px" title="Aurélien Giraud">
+							</a>
+						</div>
+						<figcaption>Aurélien Giraud</figcaption>
+					</figure>
+
+				</div>
+				<section class="legende_photos">
+					<p>De gauche à droite : Rodney Mullen, Tony Hawk et Aurélien Giraud</p>
+				</section>
+			</section>
+		</section>
+
+		<section class="petite_section">
+			<h3>Pourquoi j'aime le skate ? </h3>
+			<ul>
+  				<li>Je peux pratiquer quand je le veux</li>
+ 				<li>Il n'y a pas de <em>"pression"</em> de performance, ou de coéquipiers à supporter </li>
+  				<li>Les rencontres sont nombreuses</li>
+  				<li>C'est une grande joie lorsque l'on réussit un "trick" après beaucoup d'essais</li>
+			</ul>
+		</section>
+	</section>
+
+	<section class="bas_de_page">
+		<h3>Pour voir les 2 meilleurs skateurs de l'histoire : </h3>
+		<ul>
+  			<li><a href="https://www.youtube.com/watch?v=1U-cgn3cEGA&t=10s">Rodney Mullen, le plus grand génie du skate (vidéo)</a></li>
+ 			<li><a href="https://www.youtube.com/watch?v=e4QGnppJ-ys&t=34s">Tony Hawk et le premier 900 (vidéo)</a></li>
+		</ul>			
+	</section>
+
+	<section class="jeu">
+		<h3>
+    		JEU : Cliquez sur les menus déroulants pour découvrir des figures célèbres : 
+		</h3>
+
+		<div class="contenant_select_image">
+			<div class="inline-elements">
+
+				<select id="choix_shuv" name="shuv" onchange="calculer()">
+					<option value="0shuv"> 0 shuv-it </option>
+    				<option value="1shuv"> 1 shuv-it </option>
+    				<option value="2shuv"> 2 shuv-it </option>
+				</select>
+			</div>
+
+			<div class="inline-elements">
+				<img class="select_image" src="Tricks\shuvit_exemple.gif" width="72px">
+			</div>
+		</div>
+
+		<p><em style="font-size: 20px;">+</em></p>
+
+		<div class="contenant_select_image">
+
+			<div class="inline-elements">
+
+				<select id="choix_flip" name="flip" onchange="calculer()">
+					<option value="0flip"> 0 kickflip </option>
+    				<option value="1flip"> 1 kickflip </option>
+    				<option value="2flip"> 2 kickflip </option>
+				</select>
+			</div>
+
+			<div class="inline-elements">
+				<img class="select_image" src="Tricks\kickflip_exemple.gif" height="50px">
+			</div>
+
+		<p><em style="font-size: 20px;">=</em></p>
+
+		<p id="trick_name_ecran">
+			<em style="font-size: 20px;"> La board ne fait aucun trick !</em>
+		</p>
+
+		<img id="trick_image" src="Tricks\0shuv0flip.gif" height="300px" title="Pas de trick !">
+
+	</section>
+
+	
+
+	<script>
+
+		var trick_name_ecran = document.getElementById("trick_name_ecran");
+		var trick_image = document.getElementById("trick_image");
+		var trick_font_size = "30px";
+
+		var dic_tricks = { 	'0shuv0flip' : 'La board ne fait aucun trick !' , 
+							'0shuv1flip' : 'Kickflip',
+							'0shuv2flip' : 'Double Kickflip',
+							'1shuv0flip' : 'Pop Shuv-It',
+							'1shuv1flip' : 'Varial Kickflip',
+							'1shuv2flip' : 'Varial Double Kickflip',
+							'2shuv0flip' : '360 Pop Shuv-It',
+							'2shuv1flip' : 'Tre Flip (ou 360 Flip)',
+							'2shuv2flip' : '360 Shuv Double Flip',
+           				};
+		
+
+		function get_entrys() {
+
+    		const selecteur = document.getElementById("choix_shuv");
+    		const shuv = selecteur[selecteur.selectedIndex];
+    		const selecteur2 = document.getElementById("choix_flip");
+    		const flip = selecteur2[selecteur2.selectedIndex];
+
+    		return shuv.value + flip.value
+
+    	}
+
+    	function calculer() {
+
+    		trick_squelette = get_entrys()
+
+    		trick_name = dic_tricks[trick_squelette];
+
+    		trick_name_ecran.innerHTML = "<em style='font-size: " + trick_font_size + "'>" + trick_name + '</em>'
+
+    		chemin_acces = "Tricks/" + trick_squelette + ".gif"
+
+    		trick_image.src = chemin_acces
+    		trick_image.title = trick_name
+
+
+    	}
+	</script>
+
+
+</body>
+	
+</html>
